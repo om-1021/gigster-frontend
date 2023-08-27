@@ -33,7 +33,7 @@
 // export default Pay;
 import React from "react";
 
-export const Pay = () => {
+const Pay = () => {
   const handlePay = async () => {
     const response = await fetch("/checkout", {
       method: "POST",
@@ -54,3 +54,4 @@ export const Pay = () => {
 
   return <button onClick={handlePay}>Pay now</button>;
 };
+export default Pay;
