@@ -38,6 +38,16 @@ function Gigs() {
     refetch();
   };
 
+  // Assuming you have stored the JSON string in local storage
+  const currentUserString = localStorage.getItem("currentUser");
+
+  if (currentUserString) {
+    const currentUser = JSON.parse(currentUserString);
+    console.log(currentUser.accessToken);
+  } else {
+    console.log("currentUser not found in localStorage");
+  }
+
   return (
     <div className="gigs">
       <div className="container">
@@ -79,7 +89,6 @@ function Gigs() {
             ? "Something went wrong!"
             : data.map((gig) => <GigCard key={gig._id} item={gig} />)}
         </div>
-        {console.log(localStorage.getItem(currentUser.accessToken))}
       </div>
     </div>
   );
