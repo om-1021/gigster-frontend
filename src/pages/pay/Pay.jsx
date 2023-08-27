@@ -52,7 +52,7 @@ const Pay = () => {
     );
     debugger;
     const data = await response.json();
-    return data;
+    window.location.href = data.url;
   };
 
   return <button onClick={handlePay}>Pay now</button>;
