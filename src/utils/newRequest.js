@@ -1,6 +1,6 @@
 import axios from "axios";
 import { BASE_URL } from "../helper";
-import { config } from "dotenv";
+import { config, parse } from "dotenv";
 const url = BASE_URL;
 
 const newRequest = axios.create({
@@ -10,7 +10,9 @@ const newRequest = axios.create({
 
 newRequest.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("acessToken");
+    const user = localStorage.getItem("currentUser");
+    const parsedUser = JSON.parse(user);
+    const token = parsedUser.accessToken;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }

@@ -13,22 +13,22 @@ function Gigs() {
 
   const { search } = useLocation();
 
-  const currentUserString = localStorage.getItem("currentUser");
-  const currentUser = JSON.parse(currentUserString);
-  console.log(currentUser.accessToken);
-  const token = currentUser.accessToken;
+  // const currentUserString = localStorage.getItem("currentUser");
+  // const currentUser = JSON.parse(currentUserString);
+  // console.log(currentUser.accessToken);
+  // const token = currentUser.accessToken;
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
     queryFn: () =>
       newRequest
         .get(
-          `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`, // Pass the accessToken in the Authorization header
-            },
-          }
+          `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
+          // {
+          //   headers: {
+          //     Authorization: `Bearer ${token}`, // Pass the accessToken in the Authorization header
+          //   },
+          // }
         )
         .then((res) => {
           return res.data;
