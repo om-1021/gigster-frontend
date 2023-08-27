@@ -12,6 +12,15 @@ function Gigs() {
   const maxRef = useRef();
 
   const { search } = useLocation();
+  const currentUserString = localStorage.getItem("currentUser");
+
+  if (currentUserString) {
+    const currentUser = JSON.parse(currentUserString);
+    console.log(currentUser.accessToken);
+    const token = currentUser.accessToken;
+  } else {
+    console.log("currentUser not found in localStorage");
+  }
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
@@ -21,7 +30,10 @@ function Gigs() {
           `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
         )
         .then((res) => {
-          return res.data;
+          const data = res.data;
+          return { ...data, accessToken: token };
+          // return res.data;
+          // res.status(200).send({ ...info, accessToken: token });
         }),
   });
 
@@ -39,14 +51,6 @@ function Gigs() {
   };
 
   // Assuming you have stored the JSON string in local storage
-  const currentUserString = localStorage.getItem("currentUser");
-
-  if (currentUserString) {
-    const currentUser = JSON.parse(currentUserString);
-    console.log(currentUser.accessToken);
-  } else {
-    console.log("currentUser not found in localStorage");
-  }
 
   return (
     <div className="gigs">
