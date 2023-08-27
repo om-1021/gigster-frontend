@@ -35,18 +35,21 @@ import React from "react";
 
 const Pay = () => {
   const handlePay = async () => {
-    const response = await fetch("/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        items: [
-          // Define your line items here
-          { price: "price_123", quantity: 1 },
-        ],
-      }),
-    });
+    const response = await fetch(
+      "https://gigster-backend-algokings.onrender.com/api/checkout",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: [
+            // Define your line items here
+            { price: "price_123", quantity: 1 },
+          ],
+        }),
+      }
+    );
     debugger;
     const data = await response.json();
     return data;
