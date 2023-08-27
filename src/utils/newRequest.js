@@ -11,8 +11,11 @@ const newRequest = axios.create({
 newRequest.interceptors.request.use(
   (config) => {
     const user = localStorage.getItem("currentUser");
+    let flag = true;
+    if (user == "null") flag = false;
+
     // const token = localStorage.getItem("acessToken");
-    if (user) {
+    if (flag) {
       // const user = localStorage.getItem("currentUser");
       const parsedUser = JSON.parse(user);
       const token = parsedUser.accessToken;
