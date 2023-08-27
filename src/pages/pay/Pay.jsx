@@ -27,27 +27,27 @@ const Pay = () => {
       //   console.log(err);
       // }
       try {
-        const response = await fetch('/create-checkout-session', {
-          method: 'POST',
+        const response = await fetch("/checkout", {
+          method: "POST",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
           body: JSON.stringify({
             items: [
               // Define your line items here
-              { price: 'price_123', quantity: 1 }
+              { price: "price_123", quantity: 1 },
             ],
           }),
         });
-  
+
         const data = await response.json();
-        debugger
+        debugger;
         // if (data.sessionId) {
         //   // Redirect to the checkout page
         //   window.location.href = https://checkout.stripe.com/pay/${data.sessionId};
         // }
       } catch (error) {
-        console.error('Error creating checkout session:', error);
+        console.error("Error creating checkout session:", error);
       }
     };
     makeRequest();
@@ -64,8 +64,11 @@ const Pay = () => {
   return (
     <div className="pay">
       <Helmet>
-      <meta http-equiv="Content-Security-Policy" content="frame-src *;"/> 
-      <meta http-equiv="Content-Security-Policy" content="img-src 'self' data:"/>
+        <meta http-equiv="Content-Security-Policy" content="frame-src *;" />
+        <meta
+          http-equiv="Content-Security-Policy"
+          content="img-src 'self' data:"
+        />
       </Helmet>
       {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
