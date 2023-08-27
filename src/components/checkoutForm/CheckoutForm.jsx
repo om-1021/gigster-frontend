@@ -83,6 +83,24 @@ const CheckoutForm = () => {
     layout: "tabs",
   };
 
+  const handlePay = async () => {
+    const response = await fetch("/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: [
+          // Define your line items here
+          { price: "price_123", quantity: 1 },
+        ],
+      }),
+    });
+    debugger;
+    const data = await response.json();
+    return data;
+  };
+
   return (
     <form id="payment-form" onSubmit={handleSubmit}>
       <LinkAuthenticationElement
@@ -95,7 +113,7 @@ const CheckoutForm = () => {
           {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
         </span>
       </button> */}
-      <button>Pay now</button>
+      <button onClick={handlePay}>Pay now</button>
       {/* Show any error or success messages */}
       {/* {message && <div id="payment-message">{message}</div>} */}
     </form>
