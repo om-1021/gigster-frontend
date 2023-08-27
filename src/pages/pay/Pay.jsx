@@ -51,8 +51,6 @@ const Pay = () => {
   };
   // makeRequest();
 
-
-
   const appearance = {
     theme: "stripe",
   };
@@ -70,11 +68,12 @@ const Pay = () => {
           content="img-src 'self' data:"
         />
       </Helmet>
-      {clientSecret && (
+      <CheckoutForm />
+      {/* {clientSecret && (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm />
         </Elements>
-      )}
+      )} */}
     </div>
   );
 };
