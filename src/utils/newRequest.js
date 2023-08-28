@@ -12,7 +12,7 @@ newRequest.interceptors.request.use(
   (config) => {
     const user = localStorage.getItem("currentUser");
     let flag = true;
-    if (user == "null") flag = false;
+    if (user == null) flag = false;
 
     // const token = localStorage.getItem("acessToken");
     if (flag) {
