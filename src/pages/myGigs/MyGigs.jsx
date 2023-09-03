@@ -4,6 +4,8 @@ import "./MyGigs.scss";
 import getCurrentUser from "../../utils/getCurrentUser";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import { BarLoader } from "react-spinners";
+
 
 function MyGigs() {
   const currentUser = getCurrentUser();
@@ -34,7 +36,14 @@ function MyGigs() {
   return (
     <div className="myGigs">
       {isLoading ? (
-        "loading"
+        <div className="loader">
+        <BarLoader
+          color="#ff4533"
+          loading={isLoading}
+          width={150}
+          height={10}
+        />
+      </div>
       ) : error ? (
         "error"
       ) : (

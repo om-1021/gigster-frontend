@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
 import "./Message.scss";
+import { BarLoader } from "react-spinners";
+
 
 const Message = () => {
   const { id } = useParams();
@@ -69,11 +71,25 @@ const Message = () => {
               Messages
             </Link>
           </div>
-          <h1> {sellerDataLoading ? "Loading.." : username}</h1>
+          <h1> {sellerDataLoading ? <div className="loader">
+              <BarLoader
+                color="#ff4533"
+                loading={isLoading}
+                width={150}
+                height={10}
+              />
+            </div> : username}</h1>
         </div>
 
         {isLoading ? (
-          "loading"
+          <div className="loader">
+          <BarLoader
+            color="#ff4533"
+            loading={isLoading}
+            width={150}
+            height={10}
+          />
+        </div>
         ) : error ? (
           "error"
         ) : (

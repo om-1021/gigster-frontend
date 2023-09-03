@@ -18,13 +18,20 @@ const GigCard = ({ item }) => {
         <img src={item.cover} alt="" />
         <div className="info">
           {isLoading ? (
-            "loading"
+            <div className="loader">
+              <BarLoader
+                color="#ff4533"
+                loading={isLoading}
+                width={70}
+                height={5}
+              />
+            </div>
           ) : error ? (
             "Something went wrong!"
           ) : (
             <div className="user">
               <img src={data.img || "/img/noavatar.png"} alt="" />
-              
+
               <span>{data.username}</span>
             </div>
           )}

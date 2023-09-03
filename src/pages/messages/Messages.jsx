@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import newRequest from "../../utils/newRequest";
 import "./Messages.scss";
 import moment from "moment";
+import { BarLoader } from "react-spinners";
+
 
 const Messages = () => {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -55,7 +57,14 @@ const Messages = () => {
   return (
     <div className="messages">
       {isLoading ? (
-        "loading"
+        <div className="loader">
+        <BarLoader
+          color="#ff4533"
+          loading={isLoading}
+          width={150}
+          height={10}
+        />
+      </div>
       ) : error ? (
         "error"
       ) : (
@@ -85,10 +94,24 @@ const Messages = () => {
                 <td>
                   {!currentUser.isSeller
                     ? sellerDataLoading
-                      ? "Loading..."
+                      ? <div className="loader">
+                      <BarLoader
+                        color="#ff4533"
+                        loading={isLoading}
+                        width={150}
+                        height={10}
+                      />
+                    </div>
                       : sellerData.find((e) => e.sellerId === c.sellerId)
                           ?.sellerName
-                    : sellerDataLoading ? "loading.." :  sellerData.find((e) => e.sellerId === c.buyerId)
+                    : sellerDataLoading ? <div className="loader">
+                    <BarLoader
+                      color="#ff4533"
+                      loading={isLoading}
+                      width={150}
+                      height={10}
+                    />
+                  </div> :  sellerData.find((e) => e.sellerId === c.buyerId)
                         ?.sellerName}
                 </td>
 
