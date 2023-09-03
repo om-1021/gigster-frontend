@@ -50,7 +50,7 @@ const Pay = () => {
         }),
       }
     );
-    debugger;
+
     const data = await response.json();
     window.location.href = data.url;
   };
