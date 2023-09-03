@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
-import { ClipLoader } from "react-spinners/ClipLoader";
+import { BarLoader } from "react-spinners/ClipLoader";
 
 function Gig() {
   const { id } = useParams();
@@ -36,20 +36,7 @@ function Gig() {
   return (
     <div className="gig">
       {isLoading ? (
-        <div>
-          <ClipLoader
-            // color={{ color:"red" }}
-            loading={isLoading}
-            cssOverride={{
-              display: "block",
-              margin: "0 auto",
-              borderColor: "red",
-            }}
-            size={150}
-            aria-label="Loading Spinner"
-            data-testid="loader"
-          />
-        </div>
+        <BarLoader color="#36b7b7" />
       ) : error ? (
         "Something went wrong!"
       ) : (
@@ -57,7 +44,7 @@ function Gig() {
           <div className="left">
             <h1>{data.title}</h1>
             {isLoadingUser ? (
-              "loading"
+              <BarLoader color="#36b7b7" />
             ) : errorUser ? (
               "Something went wrong!"
             ) : (
@@ -88,7 +75,7 @@ function Gig() {
             <h2>About This Gig</h2>
             <p>{data.desc}</p>
             {isLoadingUser ? (
-              "loading"
+              <BarLoader color="#36b7b7" />
             ) : errorUser ? (
               "Something went wrong!"
             ) : (
@@ -116,7 +103,11 @@ function Gig() {
                       style={{ cursor: "pointer" }}
                       onClick={() =>
                         (window.location = `mailto:${
-                          isLoadingUser ? "loading.." : dataUser.email
+                          isLoadingUser ? (
+                            <BarLoader color="#36b7b7" />
+                          ) : (
+                            dataUser.email
+                          )
                         }`)
                       }
                     >
