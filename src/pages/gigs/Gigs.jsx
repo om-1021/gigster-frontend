@@ -4,7 +4,7 @@ import GigCard from "../../components/gigCard/GigCard";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import { useLocation } from "react-router-dom";
-import { BarLoader } from "react-spinners";
+import { PacmanLoader } from "react-spinners";
 
 function Gigs() {
   const [sort, setSort] = useState("sales");
@@ -70,8 +70,8 @@ function Gigs() {
         </div>
         <div className="cards">
           {isLoading ? (
-            <div>
-              <BarLoader color="#36d7b7" loading={isLoading} />
+            <div className="loader">
+              <PacmanLoader color="#ff4533" loading={isLoading} size={100} />
             </div>
           ) : error ? (
             "Something went wrong!"
