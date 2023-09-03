@@ -3,6 +3,7 @@ import "./GigCard.scss";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
+import { BarLoader } from "react-spinners";
 
 const GigCard = ({ item }) => {
   const { isLoading, error, data } = useQuery({
