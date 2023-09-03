@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
+import { ClipLoader } from "react-spinners/ClipLoader";
 
 function Gig() {
   const { id } = useParams();
@@ -35,7 +36,20 @@ function Gig() {
   return (
     <div className="gig">
       {isLoading ? (
-        "loading"
+        <div>
+          <ClipLoader
+            color={{ red }}
+            loading={isLoading}
+            cssOverride={{
+              display: "block",
+              margin: "0 auto",
+              borderColor: "red",
+            }}
+            size={150}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        </div>
       ) : error ? (
         "Something went wrong!"
       ) : (
