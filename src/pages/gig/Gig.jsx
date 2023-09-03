@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
-import { BarLoader } from "react-spinners/ClipLoader";
+// import { BarLoader } from "react-spinners/ClipLoader";
 
 function Gig() {
   const { id } = useParams();
@@ -36,7 +36,7 @@ function Gig() {
   return (
     <div className="gig">
       {isLoading ? (
-        <BarLoader color="#36b7b7" />
+        "Loading..."
       ) : error ? (
         "Something went wrong!"
       ) : (
@@ -44,7 +44,7 @@ function Gig() {
           <div className="left">
             <h1>{data.title}</h1>
             {isLoadingUser ? (
-              <BarLoader color="#36b7b7" />
+              "Loading..."
             ) : errorUser ? (
               "Something went wrong!"
             ) : (
@@ -75,7 +75,7 @@ function Gig() {
             <h2>About This Gig</h2>
             <p>{data.desc}</p>
             {isLoadingUser ? (
-              <BarLoader color="#36b7b7" />
+              "Loading..."
             ) : errorUser ? (
               "Something went wrong!"
             ) : (
@@ -103,11 +103,7 @@ function Gig() {
                       style={{ cursor: "pointer" }}
                       onClick={() =>
                         (window.location = `mailto:${
-                          isLoadingUser ? (
-                            <BarLoader color="#36b7b7" />
-                          ) : (
-                            dataUser.email
-                          )
+                          isLoadingUser ? "Loading..." : dataUser.email
                         }`)
                       }
                     >
