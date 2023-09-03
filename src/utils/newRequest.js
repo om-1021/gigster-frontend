@@ -1,7 +1,8 @@
 import axios from "axios";
-import { BASE_URL } from "../helper";
+import { getApiBaseUrl } from "../helper";
 import { config, parse } from "dotenv";
-const url = BASE_URL;
+const url = getApiBaseUrl();
+console.log("url------>", url);
 
 const newRequest = axios.create({
   baseURL: url,
@@ -11,7 +12,7 @@ const newRequest = axios.create({
 newRequest.interceptors.request.use(
   (config) => {
     const user = localStorage.getItem("currentUser");
-    const parsedUser  = JSON.parse(user);
+    const parsedUser = JSON.parse(user);
     let flag = true;
     if (parsedUser == null) flag = false;
 

@@ -5,6 +5,7 @@
   "type": "module",
   "proxy": "http://localhost:8800",
   "scripts": {
+    "prod": "set NODE_ENV=production&& vite",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
