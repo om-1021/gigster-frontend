@@ -38,7 +38,7 @@ function Gig() {
       {isLoading ? (
         <div>
           <ClipLoader
-            color={{ red }}
+            // color={{ color:"red" }}
             loading={isLoading}
             cssOverride={{
               display: "block",
