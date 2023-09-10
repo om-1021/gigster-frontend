@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
-// import { BarLoader } from "react-spinners/ClipLoader";
+import { BarLoader } from "react-spinners";
 
 function Gig() {
   const { id } = useParams();
@@ -36,7 +36,14 @@ function Gig() {
   return (
     <div className="gig">
       {isLoading ? (
-        "Loading..."
+        <div className="loader">
+          <BarLoader
+            color="#ff4533"
+            loading={isLoading}
+            width={150}
+            height={10}
+          />
+        </div>
       ) : error ? (
         "Something went wrong!"
       ) : (
@@ -44,7 +51,14 @@ function Gig() {
           <div className="left">
             <h1>{data.title}</h1>
             {isLoadingUser ? (
-              "Loading..."
+              <div className="loader">
+                <BarLoader
+                  color="#ff4533"
+                  loading={isLoading}
+                  width={150}
+                  height={10}
+                />
+              </div>
             ) : errorUser ? (
               "Something went wrong!"
             ) : (
@@ -75,7 +89,14 @@ function Gig() {
             <h2>About This Gig</h2>
             <p>{data.desc}</p>
             {isLoadingUser ? (
-              "Loading..."
+              <div className="loader">
+                <BarLoader
+                  color="#ff4533"
+                  loading={isLoading}
+                  width={150}
+                  height={10}
+                />
+              </div>
             ) : errorUser ? (
               "Something went wrong!"
             ) : (
@@ -103,7 +124,18 @@ function Gig() {
                       style={{ cursor: "pointer" }}
                       onClick={() =>
                         (window.location = `mailto:${
-                          isLoadingUser ? "Loading..." : dataUser.email
+                          isLoadingUser ? (
+                            <div className="loader">
+                              <BarLoader
+                                color="#ff4533"
+                                loading={isLoading}
+                                width={150}
+                                height={10}
+                              />
+                            </div>
+                          ) : (
+                            dataUser.email
+                          )
                         }`)
                       }
                     >
