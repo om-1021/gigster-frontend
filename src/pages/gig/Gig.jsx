@@ -33,6 +33,27 @@ function Gig() {
     enabled: !!userId,
   });
 
+  const handlePay = async () => {
+    const response = await fetch(
+      "https://gigster-backend-algokings.onrender.com/api/checkout",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: [
+            // Define your line items here
+            { price: "price_123", quantity: 1 },
+          ],
+        }),
+      }
+    );
+
+    const data = await response.json();
+    window.location.href = data.url;
+  };
+
   return (
     <div className="gig">
       {isLoading ? (
@@ -197,9 +218,9 @@ function Gig() {
                 </div>
               ))}
             </div>
-            <Link to={`/pay/${id}`}>
-              <button>Continue</button>
-            </Link>
+            
+              <button onClick={handlePay}> Continue</button>
+            
           </div>
         </div>
       )}
