@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
 import { BarLoader } from "react-spinners";
+const url = getApiBaseUrl();
 
 function Gig() {
   const { id } = useParams();
@@ -34,21 +35,18 @@ function Gig() {
   });
 
   const handlePay = async () => {
-    const response = await fetch(
-      "https://gigster-backend-algokings.onrender.com/api/checkout",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          items: [
-            // Define your line items here
-            { price: "price_123", quantity: 1 },
-          ],
-        }),
-      }
-    );
+    const response = await fetch(`${url}/checkout`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        items: [
+          // Define your line items here
+          { price: "price_123", quantity: 1 },
+        ],
+      }),
+    });
 
     const data = await response.json();
     window.location.href = data.url;
@@ -218,9 +216,8 @@ function Gig() {
                 </div>
               ))}
             </div>
-            
-              <button onClick={handlePay}> Continue</button>
-            
+
+            <button onClick={handlePay}> Continue</button>
           </div>
         </div>
       )}
