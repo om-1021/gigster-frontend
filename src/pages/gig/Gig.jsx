@@ -7,8 +7,13 @@ import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
 import { BarLoader } from "react-spinners";
 import { getApiBaseUrl } from "../../helper.js";
+import getCurrentUser from "../../utils/getCurrentUser.js";
 
 const url = getApiBaseUrl();
+
+const user = getCurrentUser();
+
+const currentUserID = user._id;
 
 function Gig() {
   const { id } = useParams();
@@ -37,6 +42,19 @@ function Gig() {
   });
 
   const handlePay = async () => {
+    //! creating new order
+    const res = await newRequest.post(`/orders/${id}`, {
+      buyerId: currentUserID,
+    });
+    if (res.status === 200) {
+      const paymentIntentId = res.data.paymentIntentId;
+
+      console.log("Payment Intent ID:", paymentIntentId);
+    } else {
+      console.error("Error:", response.statusText);
+    }
+
+    //! pay page
     const response = await fetch(`${url}/checkout`, {
       method: "POST",
       headers: {
