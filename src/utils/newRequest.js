@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getApiBaseUrl } from "../helper";
+import { getApiBaseUrl } from "../helper.js";
 import { config, parse } from "dotenv";
 const url = getApiBaseUrl();
 console.log("url------>", url);

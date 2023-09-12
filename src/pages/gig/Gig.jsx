@@ -6,6 +6,8 @@ import { useQuery } from "@tanstack/react-query";
 import newRequest from "../../utils/newRequest";
 import Reviews from "../../components/reviews/Reviews";
 import { BarLoader } from "react-spinners";
+import { getApiBaseUrl } from "../../helper.js";
+
 const url = getApiBaseUrl();
 
 function Gig() {

@@ -1,4 +1,6 @@
 import React from "react";
+import { getApiBaseUrl } from "../../helper.js";
+
 const url = getApiBaseUrl();
 
 const Pay = () => {
