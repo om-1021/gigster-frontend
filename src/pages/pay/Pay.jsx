@@ -36,7 +36,7 @@ import React from "react";
 const Pay = () => {
   const handlePay = async () => {
     const response = await fetch(
-      "https://gigster-backend-algokings.onrender.com/api/checkout",
+      "https://gigster-backend-server.onrender.com/api/checkout",
       {
         method: "POST",
         headers: {
