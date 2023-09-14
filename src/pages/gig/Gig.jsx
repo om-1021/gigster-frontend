@@ -42,12 +42,13 @@ function Gig() {
   });
 
   const handlePay = async () => {
+    let paymentIntentId;
     //! creating new order
     const res = await newRequest.post(`/orders/${id}`, {
       buyerId: currentUserID,
     });
     if (res.status === 200) {
-      const paymentIntentId = res.data.paymentIntentId;
+      paymentIntentId = res.data.paymentIntentId;
 
       console.log("Payment Intent ID:", paymentIntentId);
     } else {
@@ -55,20 +56,24 @@ function Gig() {
     }
 
     //! pay page
-    const response = await fetch(`${url}/checkout`, {
-      method: "POST",
+    const response = await newRequest.post(`${url}/checkout`, {
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         items: [
           // Define your line items here
-          { price: "price_123", quantity: 1 },
+          {
+            price: "price_1NjmAlSFwnpGRs91N78Q2OaL",
+            quantity: 1,
+          },
         ],
+        payment_intent: paymentIntentId,
       }),
     });
-
-    const data = await response.json();
+    console.log("response is --->", response);
+    const data = await response.data;
+    console.log("data is -->", data);
     window.location.href = data.url;
   };
 
