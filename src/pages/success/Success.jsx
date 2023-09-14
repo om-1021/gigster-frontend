@@ -4,7 +4,8 @@ import newRequest from "../../utils/newRequest";
 import { useLottie } from "lottie-react";
 import successAnimation from "./Success_Animation.json";
 import "./Success.scss";
-const Success = () => {
+
+const Success = (req,res,next) => {
   const options = {
     animationData: successAnimation,
     loop: true,
@@ -44,4 +45,4 @@ const Success = () => {
   );
 };
 
-export default Success;
+export default Success
